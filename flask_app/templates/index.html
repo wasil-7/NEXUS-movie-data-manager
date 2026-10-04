@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexus | Graph-Based Movie Data Manager</title>
+    <!-- Modern Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Icons -->
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <!-- Background Elements -->
+    <div class="bg-orb orb-1"></div>
+    <div class="bg-orb orb-2"></div>
+
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar glass-panel">
+            <div class="logo">
+                <i class='bx bx-network-chart'></i>
+                <h1>NEXUS</h1>
+            </div>
+            <div class="sub-logo">Data Structure Visualizer</div>
+            
+            <nav class="nav-menu">
+                <button class="nav-item active" data-target="search-view">
+                    <i class='bx bx-search-alt'></i>
+                    <span>Dataset Search</span>
+                </button>
+                <button class="nav-item" data-target="recommend-view">
+                    <i class='bx bx-git-branch'></i>
+                    <span>Graph Recommendations</span>
+                </button>
+                <button class="nav-item" data-target="path-view">
+                    <i class='bx bx-map-alt'></i>
+                    <span>Shortest Path</span>
+                </button>
+            </nav>
+
+            <div class="system-stats">
+                <div class="stat-header">Cluster Status</div>
+                <div class="stat-row">
+                    <span class="stat-label">Nodes Indexed</span>
+                    <span class="stat-value" id="stat-nodes">--</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Graph Edges</span>
+                    <span class="stat-value" id="stat-edges">--</span>
+                </div>
+                <div class="stat-indicator">
+                    <div class="pulse"></div> Scalable Graph Ready
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Search View -->
+            <section id="search-view" class="view-section active">
+                <header class="section-header">
+                    <h2>AVL/Hash Indexed Search</h2>
+                    <p>O(log N) lookup across 5000+ records</p>
+                </header>
+                
+                <div class="search-container" style="position: relative; margin-bottom: 32px;">
+                    <div class="search-bar glass-panel" style="margin-bottom: 0;">
+                        <i class='bx bx-search'></i>
+                        <input type="text" id="search-input" placeholder="Search by title, director, genre..." autocomplete="off">
+                    </div>
+                    <div id="search-suggestions" class="suggestions-dropdown glass-panel"></div>
+                </div>
+
+                <div class="results-grid" id="search-results">
+                    <!-- Results populated by JS -->
+                </div>
+            </section>
+
+            <!-- Recommend View -->
+            <section id="recommend-view" class="view-section">
+                <header class="section-header">
+                    <h2>Traversal Recommendations</h2>
+                    <p>BFS/DFS driven similarity matching</p>
+                </header>
+
+                <div class="search-container" style="position: relative; margin-bottom: 32px;">
+                    <div class="search-bar glass-panel" style="margin-bottom: 0;">
+                        <i class='bx bx-movie-play'></i>
+                        <input type="text" id="recommend-input" placeholder="Enter a movie title to find similar nodes..." autocomplete="off">
+                        <button class="action-btn" onclick="fetchRecommendations()">Traverse</button>
+                    </div>
+                    <div id="recommend-suggestions" class="suggestions-dropdown glass-panel"></div>
+                </div>
+
+                <div class="recommendations-container" id="recommend-results">
+                    <!-- Results populated by JS -->
+                </div>
+            </section>
+
+            <!-- Path View -->
+            <section id="path-view" class="view-section">
+                <header class="section-header">
+                    <h2>Entity Connection Path</h2>
+                    <p>Shortest path discovery between any two graph nodes</p>
+                </header>
+
+                <div class="path-inputs glass-panel" style="margin-bottom: 32px;">
+                    <div class="input-group" style="position: relative;">
+                        <label>Source Node</label>
+                        <input type="text" id="path-start" placeholder="e.g., Keanu Reeves" autocomplete="off">
+                        <div id="path-start-suggestions" class="suggestions-dropdown glass-panel"></div>
+                    </div>
+                    <div class="path-icon">
+                        <i class='bx bx-transfer-alt'></i>
+                    </div>
+                    <div class="input-group" style="position: relative;">
+                        <label>Destination Node</label>
+                        <input type="text" id="path-end" placeholder="e.g., Christopher Nolan" autocomplete="off">
+                        <div id="path-end-suggestions" class="suggestions-dropdown glass-panel"></div>
+                    </div>
+                    <button class="action-btn" onclick="fetchPath()">Find Path</button>
+                </div>
+
+                <div class="path-visualization" id="path-results">
+                    <!-- Results populated by JS -->
+                </div>
+            </section>
+
+            <!-- Clean Footer at the end of the website -->
+            <footer class="app-footer">
+                <p>Wasil Kayani &middot; Armughan Bakhshi</p>
+            </footer>
+        </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

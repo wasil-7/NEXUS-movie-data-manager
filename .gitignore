@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.env
+venv/
+.env
+
+# C++ Build & Binaries
+*.exe
+*.o
+*.obj
+*.out
+*.app
+
+# IDE & Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
