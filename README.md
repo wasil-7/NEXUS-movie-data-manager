@@ -34,7 +34,7 @@ The system consists of two synergistic layers:
 
 ---
 
-## 🚀 Quick Start Guide
+## 🎬 Quick Start Guide
 
 ### 1. Running the Web Visualization (Flask)
 
